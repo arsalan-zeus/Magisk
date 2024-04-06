@@ -231,25 +231,25 @@ fun Project.setupApp() {
         into("armeabi-v7a") {
             from(rootProject.file("native/out/armeabi-v7a")) {
                 include("busybox", "magiskboot", "magiskinit", "magiskpolicy", "magisk")
-                rename { if (it == "magisk") "libmagisk32.so" else "lib$it.so" }
+                rename { "lib$it.so" }
             }
         }
         into("x86") {
             from(rootProject.file("native/out/x86")) {
                 include("busybox", "magiskboot", "magiskinit", "magiskpolicy", "magisk")
-                rename { if (it == "magisk") "libmagisk32.so" else "lib$it.so" }
+                rename { "lib$it.so" }
             }
         }
         into("arm64-v8a") {
             from(rootProject.file("native/out/arm64-v8a")) {
                 include("busybox", "magiskboot", "magiskinit", "magiskpolicy", "magisk")
-                rename { if (it == "magisk") "libmagisk64.so" else "lib$it.so" }
+                rename { "lib$it.so" }
             }
         }
         into("x86_64") {
             from(rootProject.file("native/out/x86_64")) {
                 include("busybox", "magiskboot", "magiskinit", "magiskpolicy", "magisk")
-                rename { if (it == "magisk") "libmagisk64.so" else "lib$it.so" }
+                rename { "lib$it.so" }
             }
         }
         onlyIf {
@@ -385,7 +385,7 @@ fun Project.setupStub() {
     val apk = layout.buildDirectory.file("intermediates/processed_res/" +
         "release/processReleaseResources/out/resources-release.ap_").get().asFile
     val optRes = layout.buildDirectory.file("intermediates/optimized_processed_res/" +
-        "release/processReleaseResources/resources-release-optimize.ap_").get().asFile
+        "release/optimizeReleaseResources/resources-release-optimize.ap_").get().asFile
     afterEvaluate {
         tasks.named("optimizeReleaseResources") {
             doLast { apk.copyTo(optRes, true) }

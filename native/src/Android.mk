@@ -37,8 +37,7 @@ LOCAL_SRC_FILES := \
     core/zygisk/module.cpp \
     core/zygisk/hook.cpp \
     core/deny/cli.cpp \
-    core/deny/utils.cpp \
-    core/deny/revert.cpp
+    core/deny/utils.cpp
 
 LOCAL_LDLIBS := -llog
 LOCAL_LDFLAGS := -Wl,--dynamic-list=src/exported_sym.txt
@@ -111,7 +110,6 @@ LOCAL_LDFLAGS := -static -T src/lto_fix.lds
 
 ifdef B_CRT0
 LOCAL_STATIC_LIBRARIES += crt0
-LOCAL_CFLAGS += -DUSE_MUSL_PRINTF
 LOCAL_LDFLAGS := -lm
 endif
 
@@ -167,9 +165,7 @@ LOCAL_EXPORT_C_INCLUDES := $(LOCAL_C_INCLUDES)
 LOCAL_SRC_FILES := \
     sepolicy/api.cpp \
     sepolicy/sepolicy.cpp \
-    sepolicy/rules.cpp \
     sepolicy/policydb.cpp \
-    sepolicy/statement.cpp \
     sepolicy/policy-rs.cpp
 include $(BUILD_STATIC_LIBRARY)
 
